@@ -16,11 +16,18 @@ public class BirthMonth {
         Scanner in = new Scanner(System.in);
         int birthDayMonth = 0;
         System.out.println("Please give the number of the month you were born in: ");
-        birthDayMonth = in.nextInt();
-        if (birthDayMonth > 12 || birthDayMonth < 1) {
+        // Check that the next token is an int before attempting to read it
+        if (in.hasNextInt()) {
+            birthDayMonth = in.nextInt();
+            if (birthDayMonth > 12 || birthDayMonth < 1) {
             System.out.println("You entered an incorrect month value: " + birthDayMonth);
         } else {
             System.out.println("Your birth month is: " + birthDayMonth);
+        }
+        } else {
+            // consume the invalid token so the scanner is left in a consistent state
+            String invalid = in.next();
+            System.out.println("You entered an incorrect month value please input a integer");
         }
     }
 }
